@@ -1,5 +1,5 @@
-from sticks     import get_sticks_game
-from collatz    import get_collatz_game
+from games.sticks     import get_sticks_game
+from games.collatz    import get_collatz_game
 
 class Interface:
     @staticmethod

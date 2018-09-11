@@ -1,11 +1,10 @@
 from game   import Game
-from utils  import is_theorem
 
 def get_sticks_game():
     axioms = ['|']
 
     def duplicate(game, theorem):
-        if is_theorem(game, theorem):
+        if theorem in game.theorems:
             return theorem + theorem
         return False
 
