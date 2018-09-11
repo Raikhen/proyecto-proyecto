@@ -13,7 +13,8 @@ Classes
   - Utilities
     - getLogicGame(as: 'tree' || 'string')
     - getMathGame()
-  - Player (+ IA)
+  - IA
 
 Ideas
   - Games can extend other games
+    - This would mean that an object extends other object, not a class
