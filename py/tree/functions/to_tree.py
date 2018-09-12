@@ -1,4 +1,5 @@
-from tree.get_index import get_index
+from tree.functions.get_index       import get_index
+from tree.functions.get_children    import get_children
 
 def to_tree(string, alphabet):
     node = False
@@ -19,8 +20,6 @@ def to_tree(string, alphabet):
                 if index == -1:
                     return False
 
-            # TODO: Here we need to get the children
-
-            # Count the parentheses and split by commas.
+            # TODO: get_children(string)
 
     return False
