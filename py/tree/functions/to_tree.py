@@ -1,15 +1,16 @@
+from tree.node                      import Node
 from tree.functions.get_index       import get_index
 from tree.functions.get_children    import get_children
 
 def to_tree(string, alphabet):
-    node = False
     symbol = False
     index = -1
+    children = []
 
     if len(string):
         drawing = string[0]
 
-        for alphabet_symbol in alphabet:
+        for alphabet_symbol in alphabet.values():
             if alphabet_symbol.drawing == drawing:
                 symbol = alphabet_symbol
 
@@ -20,6 +21,12 @@ def to_tree(string, alphabet):
                 if index == -1:
                     return False
 
-            # TODO: get_children(string)
+            children_as_strings = get_children(string)
+
+            if children_as_strings:
+                for child_as_string in children_as_strings:
+                    children.append(to_tree(child_as_string, alphabet))
+
+            return Node(symbol, children, index)
 
     return False
