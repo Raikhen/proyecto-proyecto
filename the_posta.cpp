@@ -5,9 +5,8 @@
 #include <vector>
 #include <map>
 
-/* TO DO:
- * 	defs
- */
+// TODO: Add defs.
+// TODO: childrenFormat is never used. Fix it.
 
 using namespace std;
 

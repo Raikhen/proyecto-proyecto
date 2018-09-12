@@ -1,10 +1,5 @@
-from game import Game
-
-'''
-class Type:
-    def __init__(type):
-        if
-'''
+from game                   import Game
+from tree.alphabets.logic   import get_logic_alphabet
 
 def get_logic_game():
     axioms = [
@@ -13,7 +8,9 @@ def get_logic_game():
         '⇒(⇒(¬(F_0), ¬(F_1)), ⇒(F_1, F_0))'
     ]
 
-    def replace_fariable(game, fariable, formula):
+    def replace_fariable(game, theorem, fariable, formula):
+        if theorem in game.theorems:
+            return True
         return False
 
     def then(game, implication):
@@ -25,12 +22,3 @@ def get_logic_game():
     }
 
     return Game(rules, axioms)
-
-'''
-Idea: tal vez la posta es hacer otro sistema que tenga
-como teoremas a todos los enunciados válidos.
-
-Tal vez hasta se podría hacer otro sistema que tenga
-como teoremas a todas las fórmulas válidas, como paso
-intermedio.
-'''
