@@ -19,4 +19,8 @@ def to_tree(string, alphabet):
                 if index == -1:
                     return False
 
+            # TODO: Here we need to get the children
+
+            # Count the parentheses and split by commas.
+
     return False
