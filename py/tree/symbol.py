@@ -3,3 +3,19 @@ class Symbol:
         self.drawing = drawing
         self.type = type
         self.children_format = children_format
+
+    def equals(self, symbol):
+        if self.drawing != symbol.drawing:
+            return False
+
+        if not self.type.equals(symbol.type):
+            return False
+
+        if len(self.children_format) != len(symbol.children_format):
+            return False
+
+        for i in range(0, len(self.children_format)):
+            if self.children_format[i] != symbol.children_format[i]:
+                return False
+
+        return True

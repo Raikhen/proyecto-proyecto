@@ -3,3 +3,19 @@ class Node:
         self.symbol = symbol
         self.children = children
         self.index = index
+
+    def equals(self, node):
+        if not self.symbol.equals(node.symbol):
+            return False
+
+        if self.index != node.index:
+            return False
+
+        if len(self.children) != len(node.children):
+            return False
+
+        for i in range(0, len(self.children)):
+            if self.children[i] != node.children[i]:
+                return False
+
+        return True
