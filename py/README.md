@@ -1,6 +1,6 @@
 # Python version
 
-Classes
+## Classes
   - Interface
   - Game
     - Axioms
@@ -15,6 +15,11 @@ Classes
     - getMathGame()
   - IA
 
-Ideas
+## Ideas
   - Games can extend other games
     - This would mean that an object extends other object, not a class
+
+## Reserved drawings
+  - _
+  - (
+  - )
