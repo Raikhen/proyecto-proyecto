@@ -15,7 +15,7 @@ class Node:
             return False
 
         for i in range(0, len(self.children)):
-            if self.children[i] != node.children[i]:
+            if not self.children[i].equals(node.children[i]):
                 return False
 
         return True

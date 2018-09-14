@@ -2,7 +2,7 @@ from tree.node                      import Node
 from tree.functions.get_index       import get_index
 from tree.functions.get_children    import get_children
 
-def to_tree(string, alphabet):
+def to_node(string, alphabet):
     symbol = False
     index = -1
     children = []
@@ -25,7 +25,7 @@ def to_tree(string, alphabet):
 
             if children_as_strings:
                 for child_as_string in children_as_strings:
-                    children.append(to_tree(child_as_string, alphabet))
+                    children.append(to_node(child_as_string, alphabet))
 
             return Node(symbol, children, index)
 

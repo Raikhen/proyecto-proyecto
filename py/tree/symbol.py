@@ -15,7 +15,7 @@ class Symbol:
             return False
 
         for i in range(0, len(self.children_format)):
-            if self.children_format[i] != symbol.children_format[i]:
+            if not self.children_format[i].equals(symbol.children_format[i]):
                 return False
 
         return True
