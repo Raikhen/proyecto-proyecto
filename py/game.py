@@ -18,3 +18,7 @@ class Game:
             return new_theorem
 
         return False
+
+    def show_theorems(self):
+        for theorem in self.theorems:
+            print(theorem)

@@ -2,10 +2,12 @@ from tree.functions.to_node     import to_node
 from tree.functions.to_string   import to_string
 from tree.alphabets.logic       import get_logic_alphabet
 
-def then(game, string):
-    node = to_node(string, get_logic_alphabet())
+alphabet = get_logic_alphabet()
 
-    if not node.symbol.equals(get_logic_alphabet()['implies']):
+def then(game, string):
+    node = to_node(string, alphabet)
+
+    if not node.symbol.equals(alphabet['implies']):
         return False
 
     if not string in game.theorems:
