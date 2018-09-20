@@ -1,4 +1,4 @@
-from game   import Game
+tfrom game   import Game
 
 def get_sticks_game():
     axioms = ['|']

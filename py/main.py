@@ -1,3 +1,3 @@
-from interface import Interface
+from interface.main import Interface
 
 Interface.init()
