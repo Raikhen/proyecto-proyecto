@@ -1,7 +1,10 @@
-def handle_create_game(games, params):
-    print('Escribí 1 para crear un juego desde cero.')
-    print('Escribí 2 para crear un juego preformateado.')
-    print('Escribí 3 para crear un juego extendiendo otro.')
+def handle_play_game(games, params):
+    game_name = params['game_name']
+    game = games[game_name]
+
+    print('Escribí 1 para ver todos los teoremas.')
+    print('Escribí 2 para ver todas las reglas de inferencia.')
+    print('Escribí 3 para usar alguna regla de inferencia.')
     print('Escribí 4 para ir atrás.')
 
     selection = 0
@@ -19,13 +22,13 @@ def handle_create_game(games, params):
     print()
 
     if selection == 1:
-        return '/create-game/from-scratch'
+        return f'/play-game/show-theorems?game_name={game_name}'
 
     if selection == 2:
-        return '/create-game/preformatted'
+        return '/' # TODO
 
     if selection == 3:
-        return '/create-game/extend'
+        return '/' # TODO
 
     if selection == 4:
         return '/'

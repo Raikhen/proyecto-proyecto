@@ -1,4 +1,4 @@
-def handle_root(games):
+def handle_root(games, params):
     print('Escribí 1 para crear un juego.')
     print('Escribí 2 para acceder a un juego.')
 
@@ -20,4 +20,4 @@ def handle_root(games):
         return '/create-game'
 
     if selection == 2:
-        return '/play-game'
+        return '/select-game'

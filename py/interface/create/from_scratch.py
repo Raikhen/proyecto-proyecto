@@ -1,9 +1,10 @@
 from game import Game
 
-def handle_from_scratch(games):
+def handle_from_scratch(games, params):
     axioms = []
     rules = {}
 
+    game_name = input('¿Cómo se va a llamar tu juego? ')
     axioms_length = int(input('¿Cuantos axiomas va a tener tu juego? '))
     rules_length = int(input('¿Cuantas reglas va a tener tu juego? '))
 
@@ -12,7 +13,7 @@ def handle_from_scratch(games):
 
     for i in range(0, rules_length):
         print(f'Regla {i + 1} (acordate que el primer parámetro es el juego):')
-        name = input('\tNombre de la regla: ')
+        rule_name = input('\tNombre de la regla: ')
 
         print('\tFunción (apretá Ctrl + D para guardar la regla):')
         lines = []
@@ -27,8 +28,9 @@ def handle_from_scratch(games):
 
         rule ='\n'.join(lines)
         exec(rule, globals())
-        rules[name] = eval(name)
+        rules[rule_name] = eval(rule_name)
+        print()
 
     new_game = Game(rules, axioms)
-    games.append(new_game)
+    games[game_name] = new_game
     return '/'
