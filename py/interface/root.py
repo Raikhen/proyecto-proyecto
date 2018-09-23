@@ -10,7 +10,7 @@ def handle_root(games, params):
     except ValueError:
         not_an_int = True
 
-    if not_an_int or not selection in [1, 2, 3, 4]:
+    if not_an_int or not selection in [1, 2]:
         print('Tu mamá tiene cara de rana.\n')
         return '/'
 

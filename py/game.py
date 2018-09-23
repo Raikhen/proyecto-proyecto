@@ -2,7 +2,7 @@ class Game:
     def __init__(self, rules, axioms, game = False):
         self.rules = {}
         self.theorems = []
-
+  
         if game:
             self.theorems = game.theorems
             self.rules = game.rules
