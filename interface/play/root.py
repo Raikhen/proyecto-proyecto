@@ -25,7 +25,7 @@ def handle_play_game(games, params):
         return f'/play-game/show-theorems?game_name={game_name}'
 
     if selection == 2:
-        return '/' # TODO
+        return f'/play-game/show-rules?game_name={game_name}'
 
     if selection == 3:
         return '/' # TODO

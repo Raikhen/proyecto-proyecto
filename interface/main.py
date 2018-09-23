@@ -3,6 +3,7 @@ from interface.create.root          import handle_create_game
 from interface.play.select          import handle_select_game
 from interface.play.root            import handle_play_game
 from interface.play.show_theorems   import handle_show_theorems
+from interface.play.show_rules      import handle_show_rules
 from games.collatz                  import get_collatz_game
 from games.sticks                   import get_sticks_game
 from games.logic.main               import get_logic_game
@@ -25,7 +26,8 @@ class Interface:
             '/create-game': handle_create_game,
             '/select-game': handle_select_game,
             '/play-game': handle_play_game,
-            '/play-game/show-theorems': handle_show_theorems
+            '/play-game/show-theorems': handle_show_theorems,
+            '/play-game/show-rules': handle_show_rules
         }
 
         path = '/'
