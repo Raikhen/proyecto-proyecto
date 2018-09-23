@@ -1,0 +1,44 @@
+logic
+2
+3
+
+def replace_fariable(game, theorem, fariable, formula):
+    if not theorem in game.theorems:
+        return False
+
+    far_as_node = to_node(fariable, alphabet)
+
+    if not far_as_node:
+        return False
+
+    if not to_node(formula, alphabet):
+        return False
+
+    if not far_as_node.symbol.equals(alphabet['fariable']):
+        return False
+
+    return theorem.replace(fariable, formula)
+
+
+def then(game, string):
+    node = to_node(string, alphabet)
+
+    if not node.symbol.equals(alphabet['implies']):
+        return False
+
+    if not string in game.theorems:
+        return False
+
+    if len(node.children) < 2:
+        return False
+
+    if not to_string(node.children[0]) in game.theorems:
+        return False
+
+    return to_string(node.children[1])
+
+
+
+⇒(F_0, ⇒(F_1, F_0))
+⇒(⇒(F_0, ⇒(F_1, F_2)), ⇒(⇒(F_0, F_1), ⇒(F_0, F_2)))
+⇒(⇒(¬(F_0), ¬(F_1)), ⇒(F_1, F_0))
