@@ -3,6 +3,7 @@ import keyboard
 def handle_root(games, params):
     keyboard.press_and_release('cmd+k')
 
+    print('\nBienvenido, gilcito! Gracias por el audio! ¿Todo bien?\n')
     print('Escribí 1 para crear un juego.')
     print('Escribí 2 para acceder a un juego.')
 

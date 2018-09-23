@@ -14,8 +14,6 @@ class Interface:
 
     @staticmethod
     def init():
-        print('\nBienvenido, gilcito! Gracias por el audio! ¿Todo bien?\n')
-
         Interface.games.update({
             'collatz': get_collatz_game(),
             'sticks': get_sticks_game(),
