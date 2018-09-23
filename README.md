@@ -23,3 +23,19 @@
   - _
   - (
   - )
+
+## Interface
+
+### Crear juego
+  - Con reglas de inferencia + axiomas
+  - Extender
+  - Cargar juego
+  - Atrás
+### Seleccionar juego
+  - Usar regla de inferencia
+  - Ver lista de teoremas
+  - Ver reglas
+  - Atrás
+### Guardar juego
+  - Con teoremas
+  - Sin teoremas
