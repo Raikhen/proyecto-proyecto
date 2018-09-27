@@ -2,6 +2,10 @@ logic
 2
 3
 
+RULES:
+
+NAME: replace_fariable
+FUNC:
 def replace_fariable(game, theorem, fariable, formula):
     if not theorem in game.theorems:
         return False
@@ -20,6 +24,8 @@ def replace_fariable(game, theorem, fariable, formula):
     return theorem.replace(fariable, formula)
 
 
+NAME: then
+FUNC:
 def then(game, string):
     node = to_node(string, alphabet)
 
@@ -38,6 +44,8 @@ def then(game, string):
     return to_string(node.children[1])
 
 
+
+THEOREMS:
 
 ⇒(F_0, ⇒(F_1, F_0))
 ⇒(⇒(F_0, ⇒(F_1, F_2)), ⇒(⇒(F_0, F_1), ⇒(F_0, F_2)))

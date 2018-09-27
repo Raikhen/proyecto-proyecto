@@ -1,3 +1,4 @@
+from saving.saver                   import Saver
 from interface.root                 import handle_root
 from interface.create.root          import handle_create_game
 from interface.play.select          import handle_select_game
@@ -10,16 +11,14 @@ from games.sticks                   import get_sticks_game
 from games.logic.main               import get_logic_game
 
 class Interface:
-    games = {}
+    games = {
+        'collatz': Saver.load_game('collatz'),
+        'sticks': Saver.load_game('sticks'),
+        'logic': Saver.load_game('logic'),
+    }
 
     @staticmethod
     def init():
-        Interface.games.update({
-            'collatz': get_collatz_game(),
-            'sticks': get_sticks_game(),
-            'logic': get_logic_game()
-        })
-
         paths = {
             '/': handle_root,
             '/create-game': handle_create_game,

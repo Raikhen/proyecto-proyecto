@@ -1,4 +1,5 @@
-from inspect import signature
+from inspect        import signature
+from saving.saver   import Saver
 
 def handle_use_rule(games, params):
     game_name = params['game_name']
@@ -28,6 +29,7 @@ def handle_use_rule(games, params):
         arguments.append(input(f'Valor del parámetro "{parameter}": '))
 
     game.run_rule(rule_name, *arguments)
+    Saver.save_game(game, game_name)
 
     print()
     return f'/play-game?game_name={game_name}'

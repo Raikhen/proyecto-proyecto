@@ -23,6 +23,11 @@
   - _
   - (
   - )
+  - [ Whitespaces ]
+  - THEOREMS:
+  - RULES:
+  - NAME:
+  - FUNC:
 
 ## Interface
 
