@@ -1,7 +1,0 @@
-collatz
-2
-2
-
-RULES:
-
-NAME: duplicate

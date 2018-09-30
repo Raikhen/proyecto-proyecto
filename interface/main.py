@@ -6,9 +6,6 @@ from interface.play.root            import handle_play_game
 from interface.play.show_theorems   import handle_show_theorems
 from interface.play.show_rules      import handle_show_rules
 from interface.play.use_rule        import handle_use_rule
-from games.collatz                  import get_collatz_game
-from games.sticks                   import get_sticks_game
-from games.logic.main               import get_logic_game
 
 class Interface:
     games = {

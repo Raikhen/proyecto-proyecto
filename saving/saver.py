@@ -1,55 +1,43 @@
+import os
 import inspect
 from game import Game
 
 class Saver:
     @staticmethod
     def save_game(game, game_name):
-        with open(f'saving/games/{game_name}.txt', 'w') as file:
-            file.write(game_name)
-            file.write('\n')
-            file.write(str(len(game.rules)))
-            file.write('\n')
-            file.write(str(len(game.theorems)))
+        filename = f'saving/games/{game_name}/theorems.txt'
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-            file.write('\n\nRULES:\n\n')
+        with open(filename, 'w') as f:
+            f.write('\n'.join(game.theorems))
 
-            for rule_name, rule in game.rules.items():
-                file.write(f'NAME: {rule_name}\n')
-                file.write(f'FUNC:\n{inspect.getsource(rule)}')
-                file.write('\n\n')
+        filename = f'saving/games/{game_name}/rules.txt'
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-            file.write('\nTHEOREMS:\n\n')
+        with open(filename, 'w') as f:
+            f.write('\n'.join(game.rules.keys()))
 
-            for theorem in game.theorems:
-                file.write(theorem)
-                file.write('\n')
+        for [name, rule] in game.rules.items():
+            filename = f'saving/games/{game_name}/rules/{name}.py'
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
 
+            with open(filename, 'w') as f:
+                f.write(inspect.getsource(rule))
+
+    @staticmethod
     def load_game(game_name):
-        with open(f'saving/games/{game_name}.txt') as file:
-            file_as_string = file.read()
-            lines = file_as_string.split('\n')
+        theorems = []
+        rules = {}
 
-            rules_len = int(lines[1])
-            theorems_len = int(lines[2])
+        with open(f'saving/games/{game_name}/theorems.txt', 'r') as f:
+            theorems = [theorem.strip() for theorem in f.readlines()]
 
-            rules = {}
+        with open(f'saving/games/{game_name}/rules.txt', 'r') as f:
+            rules = dict([[r.strip(), None] for r in f.readlines()])
 
-            x = file_as_string.find('RULES:')
-            y = file_as_string.find('THEOREMS:')
+        for name in rules:
+            filename = f'saving.games.{game_name}.rules.{name}'
+            module = __import__(filename, globals(), locals(), [name])
+            rules[name] = getattr(module, name)
 
-            rules_section = file_as_string[x + len('RULES:'):y].strip()
-            named_rules = rules_section[len('NAME: '):].split('NAME: ')
-
-            for named_rule in named_rules:
-                print(named_rule)
-                print(named_rule.strip().split('\nFUNC:\n'))
-                [name, rule_as_string] = named_rule.strip().split('\nFUNC:\n')
-                exec(rule_as_string, globals())
-                rules[name] = eval(name)
-
-            print(rules)
-
-            theorems_section = file_as_string[y + len('THEOREMS:'):]
-            theorems = theorems_section.strip().split('\n')
-
-            return Game(rules, theorems)
+        return Game(rules, theorems)
