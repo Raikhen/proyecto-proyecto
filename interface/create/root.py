@@ -71,6 +71,6 @@ def handle_create_game(games, params):
     Saver.save_game(new_game, game_name)
 
     with open('saving/games/index.txt', 'a') as f:
-        f.write(game_name)
+        f.write(f'{game_name}\n')
 
     return '/'

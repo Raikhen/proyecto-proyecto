@@ -2,4 +2,5 @@ collatz
 logic
 numerals
 sticks
-picklesidentity
+pickles
+identity
