@@ -1,4 +1,9 @@
 def replace_fariable(game, theorem, fariable, formula):
+    from tree.functions.to_node import to_node
+    from tree.alphabets.logic   import get_logic_alphabet
+
+    alphabet = get_logic_alphabet()
+
     if not theorem in game.theorems:
         return False
 

@@ -1,3 +1,5 @@
+import time
+
 def handle_play_game(games, params):
     game_name = params['game_name']
     game = games[game_name]
@@ -17,6 +19,7 @@ def handle_play_game(games, params):
 
     if not_an_int or not selection in [1, 2, 3, 4]:
         print('Tu mamá tiene cara de rana.\n')
+        time.sleep(1)
         return '/'
 
     print()

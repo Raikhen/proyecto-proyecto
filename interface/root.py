@@ -1,3 +1,4 @@
+import time
 import keyboard
 
 def handle_root(games, params):
@@ -17,6 +18,7 @@ def handle_root(games, params):
 
     if not_an_int or not selection in [1, 2]:
         print('Tu mamá tiene cara de rana.\n')
+        time.sleep(1)
         return '/'
 
     print()

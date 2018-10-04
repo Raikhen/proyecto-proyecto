@@ -1,0 +1,5 @@
+collatz
+logic
+numerals
+sticks
+pickles

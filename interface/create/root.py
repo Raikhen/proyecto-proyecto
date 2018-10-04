@@ -1,9 +1,12 @@
+import time
 from unidecode      import unidecode
 from game           import Game
+from saving.saver   import Saver
 
 def handle_create_game(games, params):
     axioms = []
     rules = {}
+    rules_as_str = {}
     template_game = False
 
     game_name = input('¿Cómo se va a llamar tu juego? ')
@@ -25,6 +28,7 @@ def handle_create_game(games, params):
                 template_game = games[template_name]
             else:
                 print('Tu mamá tiene cara de rana.\n')
+                time.sleep(1)
         else:
             print('No hay juegos creados.\n')
 
@@ -32,6 +36,7 @@ def handle_create_game(games, params):
         template_game = False
     else:
         print('La tia abuela de tu mejor amigx tiene cara de rana.')
+        time.sleep(1)
 
     axioms_length = int(input('¿Cuantos axiomas va a tener tu juego? '))
     rules_length = int(input('¿Cuantas reglas va a tener tu juego? '))
@@ -57,9 +62,15 @@ def handle_create_game(games, params):
         rule ='\n'.join(lines)
         exec(rule, globals())
         rules[rule_name] = eval(rule_name)
+        rules_as_str[rule_name] = rule
         print()
     print()
 
-    new_game = Game(rules, axioms, template_game)
+    new_game = Game(rules, axioms, template_game, rules_as_str)
     games[game_name] = new_game
+    Saver.save_game(new_game, game_name)
+
+    with open('saving/games/index.txt', 'a') as f:
+        f.write(game_name)
+
     return '/'

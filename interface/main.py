@@ -8,11 +8,7 @@ from interface.play.show_rules      import handle_show_rules
 from interface.play.use_rule        import handle_use_rule
 
 class Interface:
-    games = {
-        'collatz': Saver.load_game('collatz'),
-        'sticks': Saver.load_game('sticks'),
-        'logic': Saver.load_game('logic'),
-    }
+    games = Saver.get_games()
 
     @staticmethod
     def init():

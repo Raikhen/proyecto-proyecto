@@ -1,3 +1,4 @@
+import time
 from inspect        import signature
 from saving.saver   import Saver
 
@@ -19,6 +20,7 @@ def handle_use_rule(games, params):
 
     if not rule_name in game.rules.keys():
         print('Tu mamá tiene cara de rana.\n')
+        time.sleep(1)
         return '/'
 
     rule = game.rules[rule_name]
