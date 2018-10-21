@@ -1,3 +1,5 @@
+from tree.functions.to_string import to_string
+
 class Node:
     def __init__(self, symbol, children = [], index = -1):
         self.symbol = symbol
@@ -19,3 +21,9 @@ class Node:
                 return False
 
         return True
+
+    def to_string(self):
+        return to_string(self)
+
+    def show(self):
+        print(self.to_string())

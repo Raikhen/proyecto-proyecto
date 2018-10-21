@@ -19,3 +19,13 @@ class Symbol:
                 return False
 
         return True
+
+    def to_string(self):
+        f = lambda c: c.to_string()
+        children = list(map(f, self.children_format))
+        children = ', '.join(children)
+
+        return f'{self.drawing} : ({children}) ⇒ {self.type.to_string()}'
+
+    def show(self):
+        print(self.to_string())
