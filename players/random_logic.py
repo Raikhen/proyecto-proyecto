@@ -2,7 +2,6 @@ from numpy.random                   import choice
 
 from saving.saver                   import Saver
 from tree.functions.to_node         import to_node
-from tree.functions.to_string       import to_string
 from utils.get_fariables            import get_fariables
 from tree.alphabets.logic           import get_logic_alphabet
 from utils.get_random_logic_formula import get_random_logic_formula
@@ -34,8 +33,8 @@ def play(times = 1):
             weights = get_weights_from_lens(logic.theorems)
             theorem = choice(logic.theorems, p=weights)
             fariables = get_fariables(to_node(theorem, alphabet))
-            fariable = to_string(choice(fariables))
-            formula = to_string(get_random_logic_formula())
+            fariable = str(choice(fariables))
+            formula = str(get_random_logic_formula())
             logic.run_rule(rule_name, theorem, fariable, formula)
 
     Saver.save_game(logic, 'logic')

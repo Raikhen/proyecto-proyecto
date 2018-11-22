@@ -22,8 +22,5 @@ class Node:
 
         return True
 
-    def to_string(self):
-        return to_string(self)
-
-    def show(self):
-        print(self.to_string())
+    def __repr__(self):
+        to_string(self)

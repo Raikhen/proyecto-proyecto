@@ -5,8 +5,5 @@ class Type:
     def equals(self, type):
         return self.name == type.name
 
-    def to_string(self):
+    def __repr__(self):
         return self.name
-
-    def show(self):
-        print(self.to_string())

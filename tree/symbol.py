@@ -20,12 +20,7 @@ class Symbol:
 
         return True
 
-    def to_string(self):
-        f = lambda c: c.to_string()
-        children = list(map(f, self.children_format))
+    def __repr__(self):
+        children = list(map(str, self.children_format))
         children = ', '.join(children)
-
-        return f'{self.drawing} : ({children}) ⇒ {self.type.to_string()}'
-
-    def show(self):
-        print(self.to_string())
+        return f'{self.drawing} : ({children}) ⇒ {str(self.type)}'
