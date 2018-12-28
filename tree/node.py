@@ -23,4 +23,4 @@ class Node:
         return True
 
     def __repr__(self):
-        to_string(self)
+        return to_string(self)
