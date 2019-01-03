@@ -7,7 +7,8 @@ from utils.get_fariables            import get_fariables
 from games.logic.main               import get_logic_game
 from tree.alphabets.logic           import get_logic_alphabet
 from utils.get_random_logic_formula import get_random_logic_formula
-
+import re
+import numpy as np
 '''
 training_cases = [
     (
@@ -49,7 +50,7 @@ def play(logic, times = 1):
             for theorem in logic.theorems:
                 first_len = len(logic.theorems)
                 logic.run_rule(rule_name, theorem)
-                print('laruv2', logic.theorems[-1])
+                # print('from then', logic.theorems[-1], '|||', theorem, first_len, len(logic.theorems))
                 if first_len != len(logic.theorems):
                     if not logic.theorems[-1] in graph.keys():
                         graph[logic.theorems[-1]] = []
@@ -65,7 +66,7 @@ def play(logic, times = 1):
             formula = str(get_random_logic_formula())
             first_len = len(logic.theorems)
             logic.run_rule(rule_name, theorem, fariable, formula)
-            print('ramonete', theorem, 'ºººººººº', logic.theorems[-1], first_len, len(logic.theorems))
+            # print('from replace', logic.theorems[-1], '|||', theorem, first_len, len(logic.theorems))
             if first_len != len(logic.theorems):
                 if not logic.theorems[-1] in graph.keys():
                     graph[logic.theorems[-1]] = []
@@ -76,42 +77,70 @@ def play(logic, times = 1):
 def clean_proof(final_theorem, graph):
     to_process = set([final_theorem])
     marked = []
-    print(final_theorem)
+    # print(final_theorem)
 
     while len(to_process):
         theorem = to_process.pop()
 
         for parent in graph[theorem]:
-            print(theorem, parent)
-            print()
             to_process.add(parent)
 
         marked.append(theorem)
 
     return marked
 
+def generate_training_cases():
+    looping = 12
+
+    logic = get_logic_game()
+    axioms = deepcopy(logic.theorems)
+    graph = play(logic, looping)
+    final_theorem = logic.theorems[-1]
+
+    print(final_theorem)
+    theorems = clean_proof(final_theorem, graph)
+    print(theorems)
+    for theorem in axioms + [final_theorem]:
+        if theorem in theorems:
+            theorems.remove(theorem)
+
+    # print(final_theorem, theorems, axioms)
+    stop
+    final_theorem = vectorize(final_theorem)
+    axioms = [vectorize(axiom) for axiom in axioms]
+    # theorems = [vectorize(theorem) for theorem in theorems]
+
+    return (final_theorem, *axioms), theorems
+
 def get_training_cases():
-    looping = 12, 4, 24
-    training_cases = []
+    correct = True
+    while correct:
+        output = generate_training_cases()
+        correct = len(output[1]) == 0
+    return output
 
-    for i in range(looping[0]):
-        logic = get_logic_game()
+chars = ['(', ')', '⇒', ',', '¬', '|', '-']# | is a stick for variables. - es para rellenar
+chars_to_i = {c: i for i, c in enumerate(chars)}
+sen_max_length = 300
 
-        for j in range(looping[1]):
-            axioms = deepcopy(logic.theorems)
-            graph = play(logic, looping[2])
-            final_theorem = logic.theorems[-1]
-            print('se vienen')
-            pprint(logic.theorems)
-            theorems = clean_proof(final_theorem, graph)
-            for theorem in axioms + [final_theorem]:
-                if theorem in theorems:
-                    theorems.remove(theorem)
-            training_cases.append(((final_theorem, axioms), theorems))
+def vectorize(theorem):
+    theorem = theorem.replace(' ', '')
+    match = True
+    while match:
+        match = re.search(r'F_[0-9]+', theorem)
+        if match:
+            fariable = theorem[match.start():match.end()]
+            sticks = '|' * (int(fariable[2:]) + 1)
+            theorem = theorem.replace(fariable, sticks)
+    theorem = theorem + '-' * (sen_max_length - len(theorem))
+    vector = [one_hot(c) for c in theorem]
+    return np.array(vector)
 
-    return training_cases
-
-get_training_cases()
+def one_hot(char):
+    pos = chars_to_i[char]
+    array = np.zeros((len(chars)))
+    array[pos] = 1
+    return array
 
 '''
 

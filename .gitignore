@@ -4,3 +4,6 @@ __pycache__/
 # build
 the_posta
 main
+
+# datasets
+*.npy
